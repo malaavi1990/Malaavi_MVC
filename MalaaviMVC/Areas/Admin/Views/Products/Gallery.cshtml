@@ -1,0 +1,71 @@
+﻿@using MalaaviMVC_DomainClasses.Products
+@model MalaaviMVC_DomainClasses.Products.ProductGallery
+
+@{
+    ViewBag.Title = "گالری محصولات";
+}
+
+<div class="admin-body">
+    <div class="row">
+        @using (Html.BeginForm("Gallery", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.ProductId)
+            @Html.HiddenFor(model => model.ImageName)
+            <div class="col-md-4">
+                <div class="form-horizontal">
+                    <h4>گالری تصاویر محصولات</h4>
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ImageName, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <input type="file" name="imgUpdate" />
+                            @Html.ValidationMessageFor(model => model.ImageName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="افزودن تصویر" class="btn btn-success" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                @{
+                    List<ProductGallery> list = ViewBag.Galleries;
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>تصویر</th>
+                            <th>عنوان تصویر</th>
+                            <th></th>
+                        </tr>
+                        @foreach (var item in list)
+                        {
+                            <tr>
+                                <td>
+                                    <img class="thumbnail" src="~/Content/img/Product/Thumb/@item.ImageName"/>
+                                </td>
+                                <td>
+                                    @item.Title
+                                </td>
+                                <td>
+                                    <a href="/Admin/Products/DeleteGallery/@item.Id"><span class="glyphicon glyphicon-trash"></span></a>
+                                </td>
+                            </tr>
+                        }
+                        
+                    </table>
+                }
+            </div>
+        }
+    </div>
+</div>

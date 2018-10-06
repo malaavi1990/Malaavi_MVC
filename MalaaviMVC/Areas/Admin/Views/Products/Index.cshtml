@@ -1,0 +1,83 @@
+﻿@model IEnumerable<MalaaviMVC_DomainClasses.Products.Product>
+
+@{
+    ViewBag.Title = "مدیریت محصولات";
+}
+
+<div class="admin-body">
+    <h4>مدیریت محصولات</h4>
+    <hr />
+    <p>
+        @Html.ActionLink("افزودن محصول جدید", "Create", "", new { @class = "btn btn-success" })
+    </p>
+    <table class="table table-bordered">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                دسته بندی ها
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <img class="thumbnail" src="~/Content/img/Product/Thumb/@item.ImageName" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @if (item.ProductCategories.Any())
+                    {
+                        <ul>
+                            @foreach (var category in item.ProductCategories)
+                            {
+                                <li>
+                                    @category.Category.Title
+                                </li>
+                            }
+                        </ul>
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td class="btn-product">
+                    <div>
+                        <a class="btn btn-primary btn-sm" href="#">مشخصات محصول</a>
+                    </div>
+                    <div>
+                        <a class="btn btn-primary btn-sm" href="@Url.Action("Gallery", new {id = item.Id})">گالری محصول</a>
+                    </div>
+                    <div>
+                        <a class="btn btn-primary btn-sm" href="@Url.Action("Edit", new {id = item.Id})">ویرایش محصول</a>
+                    </div>
+                    <div>
+                        <a class="btn btn-primary btn-sm" href="@Url.Action("Delete", new {id = item.Id})">حذف محصول</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </table>
+</div>

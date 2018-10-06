@@ -1,0 +1,52 @@
+﻿@model IEnumerable<MalaaviMVC_DomainClasses.Products.Category>
+
+<table class="table table-bordered">
+    <tr>
+        <th>
+            نام دسته بندی
+        </th>
+        <th>
+            زیر دسته ها
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Where(c => c.ParentId == null))
+    {
+        <tr id="cate_@item.Id">
+            <td>
+                @item.Title
+            </td>
+            <td>
+                @if (Model.Any(c => c.ParentId == item.Id))
+                {
+                    <ul>
+                        @foreach (var item1 in Model.Where(c => c.ParentId == item.Id))
+                        {
+                            <li>
+                                @item1.Title &nbsp;
+                                <a onclick="Edit(@item1.Id)">
+                                    <i class="glyphicon glyphicon-edit"></i>
+                                </a> |
+                                <a onclick="Delete(@item1.Id)">
+                                    <i class="glyphicon glyphicon-trash"></i>
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                }
+            </td>
+            <td>
+                <a onclick="Create(@item.Id)">
+                    <i class="glyphicon glyphicon-plus"></i>
+                </a> |
+                <a onclick="Edit(@item.Id)">
+                    <i class="glyphicon glyphicon-edit"></i>
+                </a> |
+                <a onclick="Delete(@item.Id)">
+                    <i class="glyphicon glyphicon-trash"></i>
+                </a>
+            </td>
+        </tr>
+    }
+</table>

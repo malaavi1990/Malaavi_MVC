@@ -1,0 +1,6 @@
+D:\Projects\MVC Projects\MalaaviMVC\MalaaviMVC_ViewModels\bin\Debug\MalaaviMVC_ViewModels.dll
+D:\Projects\MVC Projects\MalaaviMVC\MalaaviMVC_ViewModels\bin\Debug\MalaaviMVC_ViewModels.pdb
+D:\Projects\MVC Projects\MalaaviMVC\MalaaviMVC_ViewModels\obj\Debug\MalaaviMVC_ViewModels.csproj.CoreCompileInputs.cache
+D:\Projects\MVC Projects\MalaaviMVC\MalaaviMVC_ViewModels\obj\Debug\MalaaviMVC_ViewModels.dll
+D:\Projects\MVC Projects\MalaaviMVC\MalaaviMVC_ViewModels\obj\Debug\MalaaviMVC_ViewModels.pdb
+D:\Projects\MVC Projects\MalaaviMVC\MalaaviMVC_ViewModels\obj\Debug\MalaaviMVC_ViewModels.csprojAssemblyReference.cache

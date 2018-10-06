@@ -1,0 +1,11 @@
+﻿@using System.Configuration
+@model MalaaviMVC_DomainClasses.Users.User
+
+<div style="direction: rtl; padding: 20px;">
+    <h3>@Model.UserName عزیز !</h3>
+    <p>با تشکر از ثبت نام شما در فروشگاه اینترنتی آی شاپ. لطفا جهت فعالسازی حساب کاربری خود روی لینک زیر کلیک کنید </p>
+    <p>
+        <a href="@ConfigurationManager.AppSettings["MyDomain"]/Account/ActiveUser/@Model.ActiveCode">لینک فعالسازی</a>
+    </p>
+</div>
+

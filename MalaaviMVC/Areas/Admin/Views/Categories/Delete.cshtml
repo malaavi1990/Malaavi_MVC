@@ -1,0 +1,21 @@
+﻿@model MalaaviMVC_DomainClasses.Products.Category
+
+@{
+    ViewBag.Title = "حذف دسته بندی";
+}
+
+<div>
+    <h5>آیا از حذف دسته بندی "@Model.Title" مطمئن هستید ؟</h5>
+    @using (Ajax.BeginForm("Delete", "Categories",FormMethod.Post,new AjaxOptions()
+    {
+        OnSuccess = "success",
+        UpdateTargetId = "listCategory"
+    }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="حذف دسته بندی" class="btn btn-success" />
+        </div>
+    }
+</div>

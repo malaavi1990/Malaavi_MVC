@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "مدیریت دسته بندی ها";
+}
+
+<div class="admin-body">
+    <h4>مدیریت دسته بندی ها</h4>
+    <hr />
+    <p>
+        <a onclick="Create()" class="btn btn-success">افزودن دسته بندی</a>
+    </p>
+    <div id="listCategory">
+        @Html.Action("ListCategory")
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalTitle"></h4>
+            </div>
+            <div class="modal-body" id="myModalBody">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function Create(id) {
+        $.get("/Admin/Categories/Create/"+id,
+            function (result) {
+                $("#myModal").modal();
+                $("#myModalTitle").html("افزودن دسته بندی جدید");
+                $("#myModalBody").html(result);
+            });
+    }
+
+    function Edit(id) {
+        $.get("/Admin/Categories/Edit/" + id,
+            function (result) {
+                $("#myModal").modal();
+                $("#myModalTitle").html("ویرایش دسته بندی");
+                $("#myModalBody").html(result);
+            });
+    }
+
+
+    function Delete(id) {
+        $.get("/Admin/Categories/Delete/" + id,
+            function(result) {
+                $("#myModal").modal();
+                $("#myModalTitle").html("حذف دسته بندی");
+                $("#myModalBody").html(result);
+            });
+    }
+
+    function success() {
+        $("#myModal").modal('hide');
+    }
+</script>
